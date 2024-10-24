@@ -15,21 +15,46 @@ import java.util.regex.Pattern;
  */
 public final class Jogo {
     private String palavra;
-    private final boolean[] acertados;
-    private int tentativas;
+    private boolean[] acertados;
+    private int tentativas = 5;
     private final ArrayList<Character> tentativasErradas = new ArrayList<>();
     
-    public Jogo(String palavra, int tentativas){
-        int size = palavra.length();
-        this.acertados = new boolean[size];
+    public Jogo(){
         
-        this.tentativas = tentativas;
-        this.palavra = palavra;
-        this.verificaEspacos();
+    }
+    
+    public String imprime(){
+        String finalText = "";
+         for(int i = 0; i < this.palavra.length(); i++){
+            if(this.acertados[i]){
+                finalText += this.palavra.charAt(i);
+            }
+            else{
+                finalText += " _";
+            }
+            
+        }
+         return finalText;
     }
     
     public String getPalavra(){
         return this.palavra;
+    }
+    
+    public void setAcertados(String acertos){
+        int size = this.palavra.length();
+        if(acertos == null){
+            
+            this.acertados = new boolean[size];
+        }
+        else{
+            boolean[] acertosLidos = new boolean[size];
+            for(int i = 0; i < acertos.length(); i++){
+                
+                acertosLidos[i] = acertos.charAt(i) != 0;
+            }
+            this.acertados = acertosLidos;
+        }
     }
     
     public void verificaEspacos(){
@@ -54,96 +79,7 @@ public final class Jogo {
         return this.acertados;
     }
     
-    public void escreveBoneco(){
-        int erradas = this.tentativasErradas.size();
-        if(erradas > 0){
-            System.out.println("");
-            System.out.println("|    |");
-            System.out.println("|    0");
-            
-            if(erradas > 2){
-                System.out.println("|   `|´");
-            }
-            else if(erradas > 1){
-                System.out.println("|   `|");
-            }
-            
-            if(erradas > 4){
-                System.out.println("|   / \\");
-            }
-            else if(erradas > 3){
-                System.out.println("|   /");
-            }
-            
-            System.out.println("|");
-            System.out.println("_");
-        }
-        System.out.println("");
-    }
-    
    
-    
-    public void imprime(){
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        
-        System.out.println("");
-        
-        System.out.println("");
-        
-        System.out.println("");
-        
-        System.out.println("");
-        
-        System.out.println("");
-        
-        System.out.println("");
-        
-        System.out.println("");
-        
-        this.escreveBoneco();
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("Tentativas: " + this.tentativas);
-        
-        if(!this.tentativasErradas.isEmpty()){
-            System.out.println("");
-            System.out.println("Letras erradas: ");
-            for(int i = 0; i < this.tentativasErradas.size(); i++){
-                System.out.print(" " + this.tentativasErradas.get(i));
-            }
-            System.out.println("");
-        }
-        System.out.println("");
-        System.out.println("Palavra: ");
-        for(int i = 0; i < this.palavra.length(); i++){
-            if(this.acertados[i]){
-                System.out.print(" " + this.palavra.charAt(i));
-            }
-            else{
-                System.out.print(" _");
-            }
-            
-        }
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-    }
     
     public void tentaLetra(char letra){
         int acertos = 0;
@@ -205,6 +141,8 @@ public final class Jogo {
     public void anunciaDerrota(){
         System.out.println("Perdeuuuuuuu!!!!!!");
     }
+    
+    
     
     
 }

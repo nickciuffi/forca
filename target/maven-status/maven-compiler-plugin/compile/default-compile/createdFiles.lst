@@ -1,2 +1,9 @@
+com\mycompany\forca\GeradorDePalavra.class
 com\mycompany\forca\Forca.class
+screens\TelaInicial$1.class
+com\mycompany\forca\ServidorForca.class
 com\mycompany\forca\Jogo.class
+screens\TelaInicial$2.class
+screens\TelaInicial.class
+screens\TelaJogo.class
+com\mycompany\forca\MainFrame.class
